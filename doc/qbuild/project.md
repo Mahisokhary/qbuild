@@ -15,6 +15,11 @@ Information about the project
 > These info should be stored at file `project.jsonc` at project dir.
 
 ## Implementation
-not implemented yet
+- [qbuild/project/project.h](../../qbuild/project/project.h):
+- - Defined `qbuild_project_t` as pointer to project object
+- - Defined `qbuild_project_load` function to load project info at given directory
+- [qbuild/project/project.internal.h](../../qbuild/project/project.internal.h):
+- - Defined struct `qbuild_project` to hold project
+- - Defined struct `qbuild_project_info` to hold project information
 
 [back](index.md)
