@@ -12,6 +12,11 @@
 extern "C" {
 #endif
 
+#define qbuild_run(call) do { \
+	qbuild_result_t res = call; \
+	if (res != QBUILD_RESULT_OK) return res; \
+	} while (0);
+
 #ifdef __cplusplus
 }
 #endif
