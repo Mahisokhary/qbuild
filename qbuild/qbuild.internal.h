@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <qbuild/qbuild.h>
+#include <qbuild/qson.internal.h>
 #include <qbuild/file/file.internal.h>
 
 #ifdef __cplusplus
