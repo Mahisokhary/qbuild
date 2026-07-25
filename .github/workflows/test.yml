@@ -13,12 +13,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          submodules: recursive
 
       - name: Gheckout qson
         uses: actions/checkout@v5
         with:
           repository: qgdev-ir/qson
           path: qson
+          submodules: recursive
 
       - name: Install qson
         run: sudo make install
@@ -29,6 +32,7 @@ jobs:
         with:
           repository: qgdev-ir/qstruct
           path: qstruct
+          submodules: recursive
 
       - name: Install qstruct
         run: sudo make install

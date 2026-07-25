@@ -5,4 +5,5 @@ build/
 # Including dotfiles that should exists
 !.gitignore
 !.github
+!.gitmodules
 
