@@ -57,3 +57,8 @@ qbuild_result_t qbuild_project_destroy(qbuild_project_t project) {
 	return QBUILD_RESULT_OK;
 }
 
+char* qbuild_project_name(qbuild_project_t project) {
+	struct qbuild_project *p = project;
+	return (&p->info)->name;
+}
+

@@ -20,6 +20,11 @@ qbuild_result_t qbuild_project_load(qbuild_project_t *project, char *dir);
  */
 qbuild_result_t qbuild_project_destroy(qbuild_project_t project);
 
+/*
+ * Returns pointer to name of the project
+ */
+char* qbuild_project_name(qbuild_project_t project);
+
 #ifdef __cplusplus
 }
 #endif
