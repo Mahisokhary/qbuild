@@ -8,6 +8,16 @@
 extern "C" {
 #endif
 
+struct qbuild_project_info {
+	char name[30];
+	char version[20];
+};
+
+struct qbuild_project {
+	char *dir;
+	struct qbuild_project_info info;
+};
+
 #ifdef __cplusplus
 }
 #endif
