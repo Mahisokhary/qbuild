@@ -18,5 +18,7 @@ typedef enum {
 }
 #endif
 
+#include <qbuild/project/project.h>
+
 #endif
 
