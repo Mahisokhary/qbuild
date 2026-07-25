@@ -62,3 +62,8 @@ char* qbuild_project_name(qbuild_project_t project) {
 	return (&p->info)->name;
 }
 
+char* qbuild_project_version(qbuild_project_t project) {
+	struct qbuild_project *p = project;
+	return (&p->info)->version;
+}
+

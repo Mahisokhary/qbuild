@@ -25,6 +25,11 @@ qbuild_result_t qbuild_project_destroy(qbuild_project_t project);
  */
 char* qbuild_project_name(qbuild_project_t project);
 
+/*
+ * Returns pointer to version of the project
+ */
+char* qbuild_project_version(qbuild_project_t project);
+
 #ifdef __cplusplus
 }
 #endif
