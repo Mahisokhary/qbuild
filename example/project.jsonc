@@ -1,5 +1,6 @@
 {
 	// Example of project information for qbuild
 	"name": "qbuild-example",
-	"version": "1.0.0-beta"
+	"version": "1.0.0-beta",
+	"idk": false // Unknown key
 }

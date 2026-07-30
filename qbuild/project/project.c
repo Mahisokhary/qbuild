@@ -30,7 +30,7 @@ inline static qbuild_result_t _load_project_info(struct qbuild_project *p) {
 			int size = sizeof(i->version);
 			qson_deserialize_run(qson_deserialize_object_entry_value_string(ctx, i->version, &size, &has_next));
 		} else {
-			return QBUILD_RESULT_JSON_DESERIALIZE_FAILED;
+			qson_deserialize_run(qson_deserialize_object_entry_value_skip(ctx, &has_next));
 		}
 	}
 	qson_deserialize_run(qson_deserialize_ctx_destroy(ctx));
