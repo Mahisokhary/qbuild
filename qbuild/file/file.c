@@ -43,7 +43,7 @@ qbuild_result_t qbuild_file_read_all(char *file, char **buffer, size_t *size) {
 	if (!fp) return QBUILD_RESULT_FILE_NOT_FOUND;
 	size_t s = _qbuild_file_size(fp);
 	char *b = malloc(s);
-	fread(b, sizeof(char), s, fp);
+	s = fread(b, sizeof(char), s, fp);
 	fclose(fp);
 	*buffer = b;
 	*size = s;
