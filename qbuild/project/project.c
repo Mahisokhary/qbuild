@@ -3,7 +3,7 @@
 /*
  * Loads project info from project info file at project directory
  */
-inline static qbuild_result_t _load_project_info(struct qbuild_project *p) {
+inline static qbuild_result_t _load_project_info(qbuild_project_t p) {
 	char *path = qbuild_file_pathcat(2, p->dir, "project.jsonc");
 	size_t buffer_size;
 	char *buffer;
@@ -50,20 +50,17 @@ qbuild_result_t qbuild_project_load(qbuild_project_t *project, char *dir) {
 	return QBUILD_RESULT_OK;
 }
 
-qbuild_result_t qbuild_project_destroy(qbuild_project_t project) {
-	struct qbuild_project *p = project;
+qbuild_result_t qbuild_project_destroy(qbuild_project_t p) {
 	free(p->dir);
 	free(p);
 	return QBUILD_RESULT_OK;
 }
 
-char* qbuild_project_name(qbuild_project_t project) {
-	struct qbuild_project *p = project;
-	return (&p->info)->name;
+char* qbuild_project_name(qbuild_project_t p) {
+	return p->info.name;
 }
 
-char* qbuild_project_version(qbuild_project_t project) {
-	struct qbuild_project *p = project;
-	return (&p->info)->version;
+char* qbuild_project_version(qbuild_project_t p) {
+	return p->info.version;
 }
 

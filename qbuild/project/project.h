@@ -8,7 +8,7 @@ extern "C" {
 /*
  * Pointer to actual project object
  */
-typedef void* qbuild_project_t;
+typedef struct qbuild_project* qbuild_project_t;
 
 /*
  * Loads project at given directory
