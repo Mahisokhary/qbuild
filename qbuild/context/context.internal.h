@@ -8,6 +8,14 @@
 extern "C" {
 #endif
 
+/*
+ * Qbuild Context
+ */
+struct qbuild_context {
+	size_t config_dirs_length;
+	char **config_dirs;
+};
+
 #ifdef __cplusplus
 }
 #endif

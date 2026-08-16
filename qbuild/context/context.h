@@ -5,6 +5,11 @@
 extern "C" {
 #endif
 
+/*
+ * Pointer to the actual context
+ */
+typedef struct qbuild_context* qbuild_context_t;
+
 #ifdef __cplusplus
 }
 #endif
