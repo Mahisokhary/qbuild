@@ -50,3 +50,23 @@ qbuild_result_t qbuild_file_read_all(char *file, char **buffer, size_t *size) {
 	return QBUILD_RESULT_OK;
 }
 
+char **qbuild_file_path_separate(const char *src, size_t *sizep) {
+	const char s[2] = { QBUILD_FILE_PATH_SEPARATOR, 0 };
+	char *dup = strdup(src);
+	char *rest = dup;
+	char *tok;
+	size_t size = 2;
+	size_t len = 0;
+	char **res = calloc(size, sizeof(char *));
+	while ((tok = strtok_r(rest, s, &rest))) {
+		if (len + 1 >= size) {
+			size *= 2;
+			res = realloc(res, size * sizeof(char *));
+		}
+		res[len++] = tok;
+	}
+	*sizep = len;
+	if (size != len) res = realloc(res, len * sizeof(char *));
+	return res;
+}
+
