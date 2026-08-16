@@ -19,3 +19,8 @@ qbuild_result_t qbuild_context_destroy(qbuild_context_t c) {
 	return QBUILD_RESULT_OK;
 }
 
+char** qbuild_context_config_dirs(qbuild_context_t c, size_t *length) {
+	*length = c->config_dirs_length;
+	return c->config_dirs;
+}
+

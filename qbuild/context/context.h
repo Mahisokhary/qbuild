@@ -20,6 +20,11 @@ qbuild_result_t qbuild_context_create(qbuild_context_t *ctx);
  */
 qbuild_result_t qbuild_context_destroy(qbuild_context_t ctx);
 
+/*
+ * Returns context config dirs
+ */
+char** qbuild_context_config_dirs(qbuild_context_t c, size_t *length);
+
 #ifdef __cplusplus
 }
 #endif
