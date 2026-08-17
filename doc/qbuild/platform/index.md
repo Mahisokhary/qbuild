@@ -26,11 +26,11 @@ Platforms supported by qbuild
 | Platform name | host |           target           | extends |
 |:-------------:|:----:|:--------------------------:|:-------:|
 |     Posix     | yes  |             no             |    -    |
-|    FreeBSD    | yes  |             no             |  Posix  |
+|    FreeBSD    |  no  |             no             |  Posix  |
 |     Linux     | yes  |             no             |  Posix  |
-|    Android    | yes  |             no             |  Linux  |
-|     MacOS     | yes  | no (not planed to support) |  Posix  |
-|    Windows    | yes  |             no             |    -    |
+|    Android    |  no  |             no             |  Linux  |
+|     MacOS     |  no  | no (not planed to support) |  Posix  |
+|    Windows    |  no  |             no             |    -    |
 
 Architecture supported by qbuild
 
@@ -38,6 +38,12 @@ Architecture supported by qbuild
 |:---------:|:----:|:------:|
 |  x86_64   | yes  |   no   |
 |  aarch64  | yes  |   no   |
+
+## Host Platform Detection
+### Platform
+- Posix: [more info](posix.md)
+### Architecture
+Constant value set at compile time
 
 ## Implementation
 Not implemented
