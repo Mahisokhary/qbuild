@@ -21,6 +21,7 @@ typedef enum {
 
 #include <qbuild/project/project.h>
 #include <qbuild/context/context.h>
+#include <qbuild/platform/platform.h>
 
 #endif
 
