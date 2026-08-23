@@ -1,4 +1,4 @@
-#include "file.internal.h"
+#include <qbuild/qbuild.internal.h>
 #include <stdarg.h>
 
 char *qbuild_file_pathcat(int count, ...) {

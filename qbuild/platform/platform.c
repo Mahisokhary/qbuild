@@ -1,2 +1,2 @@
-#include "platform.internal.h"
+#include <qbuild/qbuild.internal.h>
 

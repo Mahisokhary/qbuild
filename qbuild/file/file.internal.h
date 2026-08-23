@@ -6,8 +6,6 @@
 #ifndef _qbuild_file_file_internal_h_
 #define _qbuild_file_file_internal_h_
 
-#include <qbuild/qbuild.internal.h>
-
 /*
  * Set path separator based on the platform
  */

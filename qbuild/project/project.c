@@ -1,4 +1,4 @@
-#include "project.internal.h"
+#include <qbuild/qbuild.internal.h>
 
 /*
  * Loads project info from project info file at project directory

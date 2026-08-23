@@ -1,5 +1,5 @@
 #include <test/test.h>
-#include <qbuild/file/file.internal.h>
+#include <qbuild/qbuild.internal.h>
 
 bool test_qbuild_file_path_seperate() {
 	test_run_log("qbuild_file_path_seperate");

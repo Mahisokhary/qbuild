@@ -1,4 +1,4 @@
-#include "context.internal.h"
+#include <qbuild/qbuild.internal.h>
 
 qbuild_result_t qbuild_context_create(qbuild_context_t *ctx) {
 	qbuild_context_t c = malloc(sizeof (struct qbuild_context));
