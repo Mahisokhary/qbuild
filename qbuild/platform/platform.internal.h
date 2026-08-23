@@ -7,6 +7,15 @@
 extern "C" {
 #endif
 
+/*
+ * Platform
+ */
+struct qbuild_platform {
+	char *name;
+	size_t parents_length;
+	struct qbuild_platform *parents[];
+};
+
 #ifdef __cplusplus
 }
 #endif

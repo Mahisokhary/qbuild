@@ -5,6 +5,11 @@
 extern "C" {
 #endif
 
+/*
+ * Pointer to actual platform
+ */
+typedef struct qbuild_platform *qbuild_platform_t;
+
 #ifdef __cplusplus
 }
 #endif
