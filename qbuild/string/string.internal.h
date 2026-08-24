@@ -10,6 +10,11 @@
 extern "C" {
 #endif
 
+/*
+ * Converts all upper-cased chars to lower-case
+ */
+void qbuild_string_lower(char *buf);
+
 #ifdef __cplusplus
 }
 #endif
