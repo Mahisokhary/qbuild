@@ -1,3 +1,6 @@
+GCC_FLAGS += \
+	-DTEST_QBUILD_PLATFORM_HOST_NAME='"$(shell uname | tr '[:upper:]' '[:lower:]')"' \
+
 TEST_OBJS := $(patsubst %,$(BUILD_DIR)/obj/%.o,$(call RESOLVE_SOURCES,test,.c))
 
 $(BUILD_DIR)/test: $(TEST_OBJS) | $(BUILD_DIR)/libqbuild.so
