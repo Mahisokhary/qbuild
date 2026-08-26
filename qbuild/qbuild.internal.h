@@ -19,6 +19,7 @@ extern "C" {
 }
 #endif
 
+#include <qbuild/posix.internal.h>
 #include <qbuild/qson.internal.h>
 #include <qbuild/file/file.internal.h>
 #include <qbuild/string/string.internal.h>
