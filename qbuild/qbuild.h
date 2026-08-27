@@ -13,6 +13,7 @@ typedef enum {
 	QBUILD_RESULT_JSON_SERIALIZE_FAILED = 2, // Failed to serialize json
 	QBUILD_RESULT_FILE_NOT_FOUND = 3, // Requested file not found
 	QBUILD_RESULT_CONTEXT_CREATE_FAILED = 4, // Failed to load resources needed for creating context
+	QBUILD_RESULT_DATASTRUCTURE_FAILED = 5, // Datastructure operation failed
 } qbuild_result_t;
 
 #ifdef __cplusplus
