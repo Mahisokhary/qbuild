@@ -24,9 +24,9 @@ extern "C" {
 #include <qbuild/qstruct.internal.h>
 #include <qbuild/file/file.internal.h>
 #include <qbuild/string/string.internal.h>
-#include <qbuild/context/context.internal.h>
 #include <qbuild/platform/platform.internal.h>
 #include <qbuild/project/project.internal.h>
+#include <qbuild/context/context.internal.h>
 
 #endif
 
