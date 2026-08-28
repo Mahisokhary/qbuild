@@ -8,6 +8,6 @@ QBUILD_OBJS := $(patsubst %,$(BUILD_DIR)/obj/%.o,$(call RESOLVE_SOURCES,qbuild,.
 
 $(BUILD_DIR)/libqbuild.so: $(QBUILD_OBJS)
 	$(info > Linking $@)
-	gcc $(GCC_FLAGS) --shared $(QBUILD_OBJS) -o $@ -lqson
+	gcc $(GCC_FLAGS) --shared $(QBUILD_OBJS) -o $@ -lqson -lqstruct
 BUILD_TARGETS += $(BUILD_DIR)/libqbuild.so
 
