@@ -14,6 +14,15 @@ struct qbuild_platform {
 	struct qbuild_platform **parents;
 };
 
+/*
+ * Platform context
+ */
+struct qbuild_platform_context {
+	qstruct_hashmap_t loaded;	// All loaded platforms
+	qbuild_platform_t host;		// Host platform
+	qbuild_platform_t target;	// Target platform
+};
+
 #ifdef __cplusplus
 }
 #endif

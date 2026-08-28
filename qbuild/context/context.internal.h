@@ -11,6 +11,7 @@ extern "C" {
 struct qbuild_context {
 	size_t config_dirs_length;
 	char **config_dirs;
+	struct qbuild_platform_context platform;
 };
 
 #ifdef __cplusplus
