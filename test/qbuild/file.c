@@ -19,9 +19,20 @@ bool test_qbuild_file_path_seperate() {
 	return success;
 }
 
+bool test_qbuild_file_exists() {
+	test_run_log("qbuild_file_exists");
+
+	bool success = 1;
+	success &= qbuild_file_exists("Makefile");
+	success &= !qbuild_file_exists("Makefile.dont_exists");
+	test_result_log(success);
+	return success;
+}
+
 bool test_qbuild_file() {
 	bool success = true;
 	success &= test_qbuild_file_path_seperate();
+	success &= test_qbuild_file_exists();
 	return success;
 }
 

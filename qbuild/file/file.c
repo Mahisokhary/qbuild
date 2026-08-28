@@ -70,3 +70,16 @@ char **qbuild_file_path_separate(const char *src, size_t *sizep) {
 	return res;
 }
 
+bool qbuild_file_exists(char *file) {
+#ifdef __POSIX__
+	return access(file, F_OK) == 0;
+#else
+	FILE *fp = fopen(file, "r");
+	if (fp) {
+		fclose(file);
+		return true;
+	}
+	return false;
+#endif
+}
+

@@ -41,6 +41,11 @@ qbuild_result_t qbuild_file_read_all(char *file, char **buffer, size_t *size);
  */
 char **qbuild_file_path_separate(const char *src, size_t *sizep);
 
+/*
+ * Checks if a file exists
+ */
+bool qbuild_file_exists(char *file);
+
 #ifdef __cplusplus
 }
 #endif
