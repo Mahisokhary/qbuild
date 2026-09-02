@@ -15,12 +15,12 @@ inline static qbuild_result_t _load_project_info(qbuild_project_t p) {
 	qson_deserialize_run(qson_deserialize_ctx_create(&ctx, buffer, buffer_size));
 	qson_deserialize_run(qson_deserialize_object_start(ctx));
 	if (qson_deserialize_ctx_state(ctx) != QSON_DESERIALIZING_STATE_OBJECT) return QBUILD_RESULT_JSON_DESERIALIZE_FAILED;
-	char key[30];
+	char *key;
+	size_t key_size;
 	bool has_next = true;
 	while (has_next) {
 		qson_type_t type = QSON_TYPE_AUTO;
-		int key_size = sizeof(key);
-		qson_deserialize_run(qson_deserialize_object_entry(ctx, key, &key_size, &type));
+		qson_deserialize_run(qson_deserialize_object_entry_auto(ctx, &key, &key_size, &type));
 		if (strcmp(key, "name") == 0) {
 			if (type != QSON_TYPE_STRING) return QBUILD_RESULT_JSON_DESERIALIZE_FAILED;
 			int size = sizeof(i->name);
@@ -32,6 +32,7 @@ inline static qbuild_result_t _load_project_info(qbuild_project_t p) {
 		} else {
 			qson_deserialize_run(qson_deserialize_object_entry_value_skip(ctx, &has_next));
 		}
+		free(key);
 	}
 	qson_deserialize_run(qson_deserialize_ctx_destroy(ctx));
 	free(buffer);
