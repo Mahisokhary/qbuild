@@ -19,6 +19,17 @@ extern "C" {
 #define log_warning(m, label, description) qolman_run(qolman_manager_handle_warning(m, 0, __func__, label, description))
 #define log_error(m, label, description) qolman_run(qolman_manager_handle_error(m, 0, __func__, label, description))
 
+#define logf(m, importance, label, ...) do { \
+		char *formatted = qbuild_string_format(label, __VA_ARGS__); \
+		qolman_run(qolman_manager_handle_quick(m, 0, qolman_level_get(importance), __func__, formatted, NULL)); \
+		free(formatted); \
+	} while (0);
+#define log_tracef(m, label, ...) logf(m, -2, label, __VA_ARGS__)
+#define log_debugf(m, label, ...) logf(m, -1, label, __VA_ARGS__)
+#define log_infof(m, label, ...) logf(m, 0, label, __VA_ARGS__)
+#define log_warningf(m, label, ...) logf(m, 1, label, __VA_ARGS__)
+#define log_errorf(m, label, ...) logf(m, 2, label, __VA_ARGS__)
+
 /*
  * Use qolman manager as qbuild log manager
  */
