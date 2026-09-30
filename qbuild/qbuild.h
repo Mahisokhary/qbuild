@@ -17,6 +17,11 @@ typedef enum {
 	QBUILD_RESULT_LOGGING_FAILED = 6, // Failed to log
 } qbuild_result_t;
 
+/*
+ * Returns qbuild result enum constants as string
+ */
+const char *qbuild_result_string(qbuild_result_t res);
+
 #ifdef __cplusplus
 }
 #endif
