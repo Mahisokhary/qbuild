@@ -15,6 +15,7 @@ typedef enum {
 	QBUILD_RESULT_CONTEXT_CREATE_FAILED = 4, // Failed to load resources needed for creating context
 	QBUILD_RESULT_DATASTRUCTURE_FAILED = 5, // Datastructure operation failed
 	QBUILD_RESULT_LOGGING_FAILED = 6, // Failed to log
+	QBUILD_RESULT_PLATFORM_DETECTION_FAILED = 7, // Failed to detect host platform
 } qbuild_result_t;
 
 /*
