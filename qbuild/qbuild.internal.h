@@ -10,6 +10,18 @@
 extern "C" {
 #endif
 
+/*
+ * Runs a qbuild function takes qbuild context, function and function arguments as arguments
+ * And log failure
+ */
+#define qbuild_runc(c, call, ...) do { \
+	qbuild_result_t res = call(__VA_ARGS__); \
+	if (res != QBUILD_RESULT_OK) { \
+		log_errorf(c->logman, "Function " #call " failed with result: %s", qbuild_result_string(res)); \
+		return res; \
+	} \
+	} while (0);
+
 #define qbuild_run(call) do { \
 	qbuild_result_t res = call; \
 	if (res != QBUILD_RESULT_OK) return res; \
