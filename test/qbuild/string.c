@@ -8,7 +8,8 @@ bool test_qbuild_string_lower() {
 
 	bool success = true;
 	qbuild_string_lower(upper);
-	success &= strcmp(upper, lower) == 0;
+	test(success, exit, strcmp(upper, lower) == 0);
+exit:
 	test_result_log(success);
 	return success;
 }
@@ -22,8 +23,10 @@ bool test_qbuild_string_format() {
 
 	bool success = true;
 	res = qbuild_string_format(fmt, fmt_param);
-	success &= strcmp(expected_res, res) == 0;
+	test(success, free, strcmp(expected_res, res) == 0);
+free:
 	free(res);
+exit:
 	test_result_log(success);
 	return success;
 }

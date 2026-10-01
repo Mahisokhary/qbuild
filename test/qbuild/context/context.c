@@ -6,14 +6,15 @@ bool test_qbuild_context_create_destroy() {
 	qbuild_context_t ctx;
 
 	bool success = 1;
-	success &= qbuild_context_create(&ctx) == QBUILD_RESULT_OK;
+	test_run(success, exit, qbuild_context_create(&ctx));
 
 	size_t len;
 	char **dirs = qbuild_context_config_dirs(ctx, &len);
-	success &= len == 1;
-	success &= strcmp(dirs[0], "./qbuild/config/") == 0;
-
-	success &= qbuild_context_destroy(ctx) == QBUILD_RESULT_OK;
+	test(success, destroy, len == 1);
+	test(success, destroy, strcmp(dirs[0], "./qbuild/config/") == 0);
+destroy:
+	test_run(success, exit, qbuild_context_destroy(ctx));
+exit:
 	test_result_log(success);
 	return success;
 }

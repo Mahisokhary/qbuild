@@ -7,8 +7,9 @@ bool test_qbuild_platform_host_name() {
 
 	bool success = true;
 #ifdef TEST_QBUILD_PLATFORM_HOST_NAME
-	success &= strcmp(host, TEST_QBUILD_PLATFORM_HOST_NAME) == 0;
+	test(success, exit, strcmp(host, TEST_QBUILD_PLATFORM_HOST_NAME) == 0);
 #endif
+exit:
 	free(host);
 	test_result_log(success);
 	return success;
