@@ -19,12 +19,12 @@ extern "C" {
 /*
  * Compares to strings
  */
-int8_t _qstruct_comparator_string(char *x, char *y);
+int8_t _qstruct_comparator_string(const char *x, const char *y);
 
 /*
  * Hasher function
  */
-long _qstruct_hasher(char *x, size_t size, long seed);
+long _qstruct_hasher(const char *x, size_t size, long seed);
 
 #ifdef __cplusplus
 }
