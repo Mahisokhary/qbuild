@@ -15,6 +15,14 @@ extern "C" {
 		qstruct_result_t res = call; \
 		if (res != QSTRUCT_RESULT_OK) return QBUILD_RESULT_DATASTRUCTURE_FAILED; \
 	} while (0);
+#define qstruct_runc(c, call, ...) do { \
+		qstruct_result_t res = call(__VA_ARGS__); \
+		if (res != QSTRUCT_RESULT_OK) { \
+			log_errorf(c->logman, "Qstruct function " #call " failed with result: %s", qstruct_result_string(res)); \
+			return QBUILD_RESULT_DATASTRUCTURE_FAILED; \
+		} \
+	} while (0);
+
 
 /*
  * Compares to strings
