@@ -17,9 +17,9 @@ qbuild_result_t qbuild_context_create(qbuild_context_t *ctx) {
 qbuild_result_t qbuild_context_destroy(qbuild_context_t c) {
 	free(c->config_dirs[0]);
 	free(c->config_dirs);
-	free(c);
 	log_debugf(c->logman, "Destroyed context %p", c);
 	qbuild_run(qbuild_logman_destroy(c->logman));
+	free(c);
 	return QBUILD_RESULT_OK;
 }
 
