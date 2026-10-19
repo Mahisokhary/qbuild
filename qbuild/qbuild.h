@@ -29,6 +29,7 @@ const char *qbuild_result_string(qbuild_result_t res);
 
 #include <qbuild/project/project.h>
 #include <qbuild/context/context.h>
+#include <qbuild/module/module.h>
 #include <qbuild/platform/platform.h>
 
 #endif
