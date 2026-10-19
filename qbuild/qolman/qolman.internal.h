@@ -13,15 +13,20 @@ extern "C" {
 
 #define qolman_run(call) if (call != QOLMAN_RESULT_OK) return QBUILD_RESULT_LOGGING_FAILED;
 
-#define log_trace(m, label, description) qolman_run(qolman_manager_handle_trace(m, 0, __func__, label, description))
-#define log_debug(m, label, description) qolman_run(qolman_manager_handle_debug(m, 0, __func__, label, description))
-#define log_info(m, label, description) qolman_run(qolman_manager_handle_info(m, 0, __func__, label, description))
-#define log_warning(m, label, description) qolman_run(qolman_manager_handle_warning(m, 0, __func__, label, description))
-#define log_error(m, label, description) qolman_run(qolman_manager_handle_error(m, 0, __func__, label, description))
+#define log(m, importance, label, description) do { \
+		char *logger = qbuild_string_format("%s@%s:%d", __func__, __FILE__, __LINE__); \
+		qolman_run(qolman_manager_handle_quick(m, 0, qolman_level_get(importance), logger, label, NULL)); \
+		free(logger); \
+	} while(0);
+#define log_trace(m, label, description) log(m, -2, label, description)
+#define log_debug(m, label, description) log(m, -1, label, description)
+#define log_info(m, label, description) log(m, 0, label, description)
+#define log_warning(m, label, description) log(m, 1, label, description)
+#define log_error(m, label, description) log(m, 2, label, description)
 
 #define logf(m, importance, label, ...) do { \
 		char *formatted = qbuild_string_format(label, __VA_ARGS__); \
-		qolman_run(qolman_manager_handle_quick(m, 0, qolman_level_get(importance), __func__, formatted, NULL)); \
+		log(m, importance, formatted, NULL); \
 		free(formatted); \
 	} while (0);
 #define log_tracef(m, label, ...) logf(m, -2, label, __VA_ARGS__)
