@@ -27,6 +27,16 @@ struct qbuild_module_instance {
 	char data[];
 };
 
+/*
+ * Context for module system
+ */
+struct qbuild_module_context {
+	/*
+	 * Contains modules in the context with module name as key and module instance as value
+	 */
+	qstruct_hashmap_t modules;
+};
+
 #ifdef __cplusplus
 }
 #endif
