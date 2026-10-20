@@ -10,6 +10,7 @@ const static char *qbuild_result_strings[] = {
 	"LOGGING_FAILED",
 	"PLATFORM_DETECTION_FAILED",
 	"MODULE_NONUNIQUE_NAME",
+	"MODULE_NOTFOUND",
 };
 
 const char *qbuild_result_string(qbuild_result_t res) {
