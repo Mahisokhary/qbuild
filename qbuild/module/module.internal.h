@@ -18,6 +18,15 @@ struct qbuild_module {
 	const struct qbuild_module **dependencies;
 };
 
+/*
+ * An instance of a module
+ */
+struct qbuild_module_instance {
+	const struct qbuild_module *module;
+	bool initialized;
+	char data[];
+};
+
 #ifdef __cplusplus
 }
 #endif
