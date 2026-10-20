@@ -42,6 +42,11 @@ struct qbuild_module_context {
  */
 qbuild_result_t qbuild_module_init(qbuild_context_t c);
 
+/*
+ * Destroys module system in given context
+ */
+qbuild_result_t qbuild_module_destroy(qbuild_context_t c);
+
 #ifdef __cplusplus
 }
 #endif
