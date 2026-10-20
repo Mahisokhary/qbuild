@@ -16,6 +16,8 @@ typedef enum {
 	QBUILD_RESULT_DATASTRUCTURE_FAILED = 5, // Datastructure operation failed
 	QBUILD_RESULT_LOGGING_FAILED = 6, // Failed to log
 	QBUILD_RESULT_PLATFORM_DETECTION_FAILED = 7, // Failed to detect host platform
+	QBUILD_RESULT_MODULE_NONUNIQUE_NAME = 8, // Another module with same name is registered
+	QBUILD_RESULT_MODULE_NOTFOUND = 9, // Module is unavialable in the context
 } qbuild_result_t;
 
 /*
@@ -29,6 +31,7 @@ const char *qbuild_result_string(qbuild_result_t res);
 
 #include <qbuild/project/project.h>
 #include <qbuild/context/context.h>
+#include <qbuild/module/module.h>
 #include <qbuild/platform/platform.h>
 
 #endif

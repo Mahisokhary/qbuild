@@ -13,6 +13,7 @@ struct qbuild_context {
 	char **config_dirs;
 	struct qbuild_platform_context platform;
 	qbuild_logman_t logman;
+	struct qbuild_module_context modules;
 };
 
 #ifdef __cplusplus
