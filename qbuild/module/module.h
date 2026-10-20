@@ -6,6 +6,11 @@
 extern "C" {
 #endif
 
+/*
+ * A qbuild module
+ */
+typedef const struct qbuild_module *qbuild_module_t;
+
 #ifdef __cplusplus
 }
 #endif
