@@ -19,5 +19,7 @@ char *qbuild_platform_host_name();
 }
 #endif
 
+#include "detector/detector.h"
+
 #endif
 
