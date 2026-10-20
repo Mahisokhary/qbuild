@@ -37,6 +37,11 @@ struct qbuild_module_context {
 	qstruct_hashmap_t modules;
 };
 
+/*
+ * Initializes module system in given context
+ */
+qbuild_result_t qbuild_module_init(qbuild_context_t c);
+
 #ifdef __cplusplus
 }
 #endif
