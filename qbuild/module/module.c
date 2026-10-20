@@ -56,3 +56,17 @@ qbuild_result_t qbuild_module_load(qbuild_context_t c, qbuild_module_t m) {
 	return QBUILD_RESULT_OK;
 }
 
+qbuild_result_t qbuild_module_data(qbuild_context_t c, qbuild_module_t m, void **datap) {
+	size_t name_size = strlen(m->name) + 1;
+	struct qbuild_module_context *mc = &c->modules;
+	if (qstruct_hashmap_has(mc->modules, m->name, name_size)) {
+		struct qbuild_module_instance *i;
+		qstruct_runc(c, qstruct_hashmap_getp, mc->modules, m->name, name_size, (void **) &i, NULL);
+		if (i->module == m) {
+			*datap = i->data;
+			return QBUILD_RESULT_OK;
+		}
+	}
+	return QBUILD_RESULT_MODULE_NOTFOUND;
+}
+

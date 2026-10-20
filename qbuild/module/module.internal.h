@@ -47,6 +47,11 @@ qbuild_result_t qbuild_module_init(qbuild_context_t c);
  */
 qbuild_result_t qbuild_module_destroy(qbuild_context_t c);
 
+/*
+ * Returns data for given module (returns null if no valid data is available)
+ */
+qbuild_result_t qbuild_module_data(qbuild_context_t c, qbuild_module_t m, void **datap);
+
 #ifdef __cplusplus
 }
 #endif
