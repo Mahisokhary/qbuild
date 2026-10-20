@@ -9,6 +9,7 @@ const static char *qbuild_result_strings[] = {
 	"DATASTRUCTURE_FAILED",
 	"LOGGING_FAILED",
 	"PLATFORM_DETECTION_FAILED",
+	"MODULE_NONUNIQUE_NAME",
 };
 
 const char *qbuild_result_string(qbuild_result_t res) {

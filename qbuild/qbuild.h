@@ -16,6 +16,7 @@ typedef enum {
 	QBUILD_RESULT_DATASTRUCTURE_FAILED = 5, // Datastructure operation failed
 	QBUILD_RESULT_LOGGING_FAILED = 6, // Failed to log
 	QBUILD_RESULT_PLATFORM_DETECTION_FAILED = 7, // Failed to detect host platform
+	QBUILD_RESULT_MODULE_NONUNIQUE_NAME = 8, // Another module with same name is registered
 } qbuild_result_t;
 
 /*
