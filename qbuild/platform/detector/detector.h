@@ -5,6 +5,11 @@
 extern "C" {
 #endif
 
+/*
+ * Detects host platform
+ */
+typedef qbuild_result_t (*qbuild_platform_detector_t)(qbuild_context_t c, char **name);
+
 #ifdef __cplusplus
 }
 #endif
