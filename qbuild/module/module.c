@@ -29,3 +29,30 @@ qbuild_result_t qbuild_module_destroy(qbuild_context_t c) {
 	return QBUILD_RESULT_OK;
 }
 
+qbuild_result_t qbuild_module_load(qbuild_context_t c, qbuild_module_t m) {
+	log_debugf(c->logman, "Loading module %s (context=%p)", m->name, c);
+	size_t name_size = strlen(m->name) + 1;
+	struct qbuild_module_context *mc = &c->modules;
+	struct qbuild_module_instance *i;
+	if (!qstruct_hashmap_has(mc->modules, m->name, name_size)) {
+		qstruct_runc(c, qstruct_hashmap_add, mc->modules, m->name, name_size, NULL, sizeof(struct qbuild_module_instance) + m->data_size);
+		qstruct_runc(c, qstruct_hashmap_getp, mc->modules, m->name, name_size, (void **) &i, NULL);
+		i->module = m;
+	} else {
+		qstruct_runc(c, qstruct_hashmap_getp, mc->modules, m->name, name_size, (void **) &i, NULL);
+		if (i->module != m) return QBUILD_RESULT_MODULE_NONUNIQUE_NAME;
+		if (i->initialized) return QBUILD_RESULT_OK;
+	}
+
+	for (int i = 0; i < m->dependencies_length; i++) {
+		qbuild_module_t dependency = m->dependencies[0];
+		log_tracef(c->logman, "Loading dependency %s of module %s (if not loaded already)", dependency->name, m->name);
+		qbuild_runc(c, qbuild_module_load, c, dependency);
+	}
+
+	qbuild_runc(c, m->initializer, c, i->data);
+	i->initialized = true;
+	log_debugf(c->logman, "Loaded module %s (context=%p)", m->name, c);
+	return QBUILD_RESULT_OK;
+}
+
