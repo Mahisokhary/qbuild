@@ -17,7 +17,7 @@ qbuild_result_t qbuild_module_destroy(qbuild_context_t c) {
 		qstruct_runc(c, qstruct_hashmap_iterator_current_value_getp, it, (void **) &i);
 		qbuild_module_t m = i->module;
 		log_debugf(c->logman, "Destroing module %s (context=%p)", i->module->name, c);
-		if (!i->initialized) {
+		if (i->initialized) {
 			qbuild_runc(c, i->module->destroyer, c, i->data);
 			i->initialized = false;
 		}
