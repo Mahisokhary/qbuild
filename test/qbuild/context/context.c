@@ -19,9 +19,29 @@ exit:
 	return success;
 }
 
+bool test_qbuild_context_config_fetch() {
+	test_run_log();
+	qbuild_context_t ctx;
+	char *config;
+
+	bool success = 1;
+	test_run(success, exit, qbuild_context_create(&ctx));
+	config = qbuild_context_config_fetch(ctx, "platform/linux.jsonc");
+	test(success, destroy_config, config);
+	test(success, destroy_ctx, qbuild_file_exists(config));
+destroy_config:
+	free(config);
+destroy_ctx:
+	test_run(success, exit, qbuild_context_destroy(ctx));
+exit:
+	test_result_log(success);
+	return success;
+}
+
 bool test_qbuild_context() {
 	bool success = true;
 	success &= test_qbuild_context_create_destroy();
+	success &= test_qbuild_context_config_fetch();
 	return success;
 }
 

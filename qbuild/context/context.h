@@ -25,6 +25,13 @@ qbuild_result_t qbuild_context_destroy(qbuild_context_t ctx);
  */
 char** qbuild_context_config_dirs(qbuild_context_t c, size_t *length);
 
+/*
+ * Finds requested file from context config dirs
+ * NOTE: returns null if not found
+ * NOTE: returned string should be freed by caller
+ */
+char* qbuild_context_config_fetch(qbuild_context_t c, const char *name);
+
 #ifdef __cplusplus
 }
 #endif

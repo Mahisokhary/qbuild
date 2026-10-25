@@ -31,3 +31,14 @@ char** qbuild_context_config_dirs(qbuild_context_t c, size_t *length) {
 	return c->config_dirs;
 }
 
+char* qbuild_context_config_fetch(qbuild_context_t c, const char *name) {
+	char *pfile = NULL;
+	for (int i = 0; i < c->config_dirs_length; i++) {
+		pfile = qbuild_file_pathcat(2, c->config_dirs[i], name);
+		if (qbuild_file_exists(pfile)) break;
+		free(pfile);
+		pfile = NULL;
+	}
+	return pfile;
+}
+
