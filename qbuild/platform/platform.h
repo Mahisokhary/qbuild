@@ -12,6 +12,11 @@ typedef struct qbuild_platform_context *qbuild_platform_context_t;
  */
 typedef struct qbuild_platform *qbuild_platform_t;
 
+/*
+ * Checks if platform is registered in the context
+ */
+bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name);
+
 #ifdef __cplusplus
 }
 #endif
