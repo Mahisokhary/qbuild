@@ -21,3 +21,9 @@ qbuild_result_t qbuild_platform_register(qbuild_platform_context_t pc, const cha
 	return QBUILD_RESULT_OK;
 }
 
+qbuild_result_t qbuild_platform_load(qbuild_platform_context_t pc, const char *name) {
+	qbuild_context_t c = pc->c;
+	qbuild_runc(c, pc->provider, c, pc, name);
+	return QBUILD_RESULT_OK;
+}
+

@@ -22,6 +22,11 @@ bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name);
  */
 qbuild_result_t qbuild_platform_register(qbuild_platform_context_t pc, const char *name, size_t parents_length, const qbuild_platform_t *parents);
 
+/*
+ * Loads platform with given name in context
+ */
+qbuild_result_t qbuild_platform_load(qbuild_platform_context_t pc, const char *name);
+
 #ifdef __cplusplus
 }
 #endif
