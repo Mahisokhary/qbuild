@@ -27,6 +27,11 @@ qbuild_result_t qbuild_platform_register(qbuild_platform_context_t pc, const cha
  */
 qbuild_result_t qbuild_platform_load(qbuild_platform_context_t pc, const char *name);
 
+/*
+ * Fetches platform with given name in context (loads the platform if not loaded)
+ */
+qbuild_result_t qbuild_platform_fetch(qbuild_platform_context_t pc, const char *name, qbuild_platform_t *p);
+
 #ifdef __cplusplus
 }
 #endif

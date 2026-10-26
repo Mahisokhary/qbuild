@@ -27,3 +27,10 @@ qbuild_result_t qbuild_platform_load(qbuild_platform_context_t pc, const char *n
 	return QBUILD_RESULT_OK;
 }
 
+qbuild_result_t qbuild_platform_fetch(qbuild_platform_context_t pc, const char *name, qbuild_platform_t *p) {
+	qbuild_context_t c = pc->c;
+	qbuild_runc(c, qbuild_platform_load, pc, name);
+	qstruct_runc(c, qstruct_hashmap_getp, pc->loaded, name, strlen(name) + 1, (void **) p, NULL);
+	return QBUILD_RESULT_OK;
+}
+
