@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+typedef struct qbuild_platform_context *qbuild_platform_context_t;
+
 /*
  * Pointer to actual platform
  */
@@ -15,6 +17,7 @@ typedef struct qbuild_platform *qbuild_platform_t;
 #endif
 
 #include "detector/detector.h"
+#include "provider/provider.h"
 
 #endif
 
