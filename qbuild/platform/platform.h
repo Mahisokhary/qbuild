@@ -17,6 +17,11 @@ typedef struct qbuild_platform *qbuild_platform_t;
  */
 bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name);
 
+/*
+ * Registers platform with given properties in the context
+ */
+qbuild_result_t qbuild_platform_register(qbuild_platform_context_t pc, const char *name, size_t parents_length, const qbuild_platform_t *parents);
+
 #ifdef __cplusplus
 }
 #endif
