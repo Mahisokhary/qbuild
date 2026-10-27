@@ -22,6 +22,7 @@ struct qbuild_platform_context {
 	qstruct_hashmap_t loaded;	// All loaded platforms
 	qbuild_platform_t host;		// Host platform
 	qbuild_platform_t target;	// Target platform
+	qbuild_platform_provider_t provider;	// Platform provider of the context
 };
 
 #ifdef __cplusplus
