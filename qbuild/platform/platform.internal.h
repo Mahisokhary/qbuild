@@ -18,9 +18,12 @@ struct qbuild_platform {
  * Platform context
  */
 struct qbuild_platform_context {
+	qbuild_context_t c;		// For easy access to qbuild context
 	qstruct_hashmap_t loaded;	// All loaded platforms
 	qbuild_platform_t host;		// Host platform
 	qbuild_platform_t target;	// Target platform
+	qbuild_platform_provider_t provider;	// Platform provider of the context
+	qbuild_platform_detector_t detector;	// Platform detector of the context
 };
 
 #ifdef __cplusplus

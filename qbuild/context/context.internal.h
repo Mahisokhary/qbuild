@@ -11,7 +11,6 @@ extern "C" {
 struct qbuild_context {
 	size_t config_dirs_length;
 	char **config_dirs;
-	struct qbuild_platform_context platform;
 	qbuild_logman_t logman;
 	struct qbuild_module_context modules;
 };

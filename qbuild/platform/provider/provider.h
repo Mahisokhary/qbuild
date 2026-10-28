@@ -14,6 +14,7 @@ typedef qbuild_result_t (*qbuild_platform_provider_t)(qbuild_context_t c, qbuild
 }
 #endif
 
+#include "config.h"
 
 #endif
 
