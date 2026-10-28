@@ -93,3 +93,17 @@ inline static qbuild_result_t load(qbuild_context_t c, qbuild_platform_context_t
 	return QBUILD_RESULT_OK;
 }
 
+qbuild_result_t qbuild_platform_provider_config(qbuild_context_t c, qbuild_platform_context_t pc, const char *name) {
+	size_t name_size = strlen(name) + 1;
+	if (!qstruct_hashmap_has(pc->loaded, name, name_size)) {
+		size_t parents_length;
+		qbuild_platform_t *parents;
+		struct qbuild_platform sp;
+		qbuild_runc(c, load, c, pc, name, name_size, &sp);
+		qbuild_runc(c, qbuild_platform_register, pc, name, sp.parents_length, sp.parents);
+		free(sp.name);
+		free(sp.parents);
+	}
+	return QBUILD_RESULT_OK;
+}
+
