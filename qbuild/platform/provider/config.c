@@ -58,3 +58,38 @@ inline static char *find_config_file(qbuild_context_t c, const char *name) {
 	return pfile;
 }
 
+inline static qbuild_result_t load(qbuild_context_t c, qbuild_platform_context_t pc, const char *name, size_t name_size, qbuild_platform_t sp) {
+	sp->name = strdup(name);
+	sp->parents = NULL;
+	sp->parents_length = 0;
+
+	size_t buffer_size;
+	char *buffer;
+	char *pfile = find_config_file(c, name);
+	if (pfile == NULL) return QBUILD_RESULT_FILE_NOT_FOUND;
+	qbuild_runc(c, qbuild_file_read_all, pfile, &buffer, &buffer_size);
+	free(pfile);
+
+	qson_deserialize_ctx_t ctx;
+	qson_deserialize_run(qson_deserialize_ctx_create(&ctx, buffer, buffer_size - 1));
+	qson_deserialize_run(qson_deserialize_object_start(ctx));
+	if (qson_deserialize_ctx_state(ctx) != QSON_DESERIALIZING_STATE_OBJECT) return QBUILD_RESULT_JSON_DESERIALIZE_FAILED;
+	char *key;
+	size_t key_size;
+	bool has_next = true;
+	while (has_next) {
+		qson_type_t type = QSON_TYPE_AUTO;
+		qson_deserialize_run(qson_deserialize_object_entry_auto(ctx, &key, &key_size, &type));
+		if (strcmp(key, "extends") == 0 && !sp->parents) {
+			if (type != QSON_TYPE_ARRAY) return QBUILD_RESULT_JSON_DESERIALIZE_FAILED;
+			qbuild_runc(c, derialize_extends, c, pc, ctx, sp, &has_next);
+		} else {
+			qson_deserialize_run(qson_deserialize_object_entry_value_skip(ctx, &has_next));
+		}
+		free(key);
+	}
+	qson_deserialize_run(qson_deserialize_ctx_destroy(ctx));
+	free(buffer);
+	return QBUILD_RESULT_OK;
+}
+
