@@ -48,3 +48,13 @@ inline static qbuild_result_t derialize_extends(qbuild_context_t c, qbuild_platf
 	return QBUILD_RESULT_OK;
 }
 
+/*
+ * Finds config file file for the given platform name
+ */
+inline static char *find_config_file(qbuild_context_t c, const char *name) {
+	char *pfile_name = qbuild_string_format("platform/%s.jsonc", name);
+	char *pfile = qbuild_context_config_fetch(c, pfile_name);
+	free(pfile_name);
+	return pfile;
+}
+
