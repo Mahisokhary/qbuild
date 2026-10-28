@@ -1,5 +1,26 @@
 #include <qbuild/qbuild.internal.h>
 
+static qbuild_result_t init(qbuild_context_t c, void *data) {
+	struct qbuild_platform_context *pc = data;
+	pc->c = c;
+	pc->provider = &qbuild_platform_provider_config;
+	pc->detector = &qbuild_platform_detector_default;
+	qstruct_runc(c, qstruct_hashmap_create, &pc->loaded, &_qstruct_comparator_string, 0, 0, &_qstruct_hasher, 0);
+
+	char *host_name;
+	qbuild_runc(c, pc->detector, c, &host_name);
+	if (!host_name) {
+		log_errorf(c->logman, "Failed to detect host platform (context=%p)", c);
+		return QBUILD_RESULT_PLATFORM_DETECTION_FAILED;
+	}
+	log_debugf(c->logman, "Detected host platform: %s (context=%p)", host_name, c);
+	qbuild_runc(c, qbuild_platform_fetch, pc, host_name, &pc->host);
+	free(host_name);
+
+	pc->target = pc->host;
+	return QBUILD_RESULT_OK;
+}
+
 bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name) {
 	return qstruct_hashmap_has(pc->loaded, name, strlen(name) + 1);
 }
