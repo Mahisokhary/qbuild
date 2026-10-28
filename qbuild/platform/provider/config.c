@@ -29,3 +29,22 @@ inline static qbuild_result_t deserialize_extends_array(qbuild_context_t qc, qbu
 	return QBUILD_RESULT_OK;
 }
 
+/*
+ * Handles "extends" field of platform
+ */
+inline static qbuild_result_t derialize_extends(qbuild_context_t c, qbuild_platform_context_t pc, qson_deserialize_ctx_t ctx, qbuild_platform_t p, bool *has_next) {
+	qson_deserialize_ctx_t sc;
+	qstruct_arraylist_t l;
+
+	qson_deserialize_run(qson_deserialize_object_entry_value_sub_ctx(ctx, &sc));
+	qbuild_runc(c, deserialize_extends_array, c, pc, sc, &l);
+	qson_deserialize_run(qson_deserialize_object_entry_value_sub_ctx_end(ctx, sc, has_next));
+
+	if (qstruct_arraylist_length(l) != 0) {
+		p->parents = qstruct_arraylist_convert_array(l, &p->parents_length);
+	} else {
+		qstruct_arraylist_destroy(l);
+	}
+	return QBUILD_RESULT_OK;
+}
+
