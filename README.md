@@ -12,4 +12,4 @@ This project is [qbuild](https://github.com/Mahisokhary/qbuild-og) but with C an
 - [xxhash](https://github.com/Cyan4973/xxHash): As hash algorithm for hashmaps
 
 # Documentation
-- [Docs](doc/index.md): Start from root of docs
+- [Docs](doc/README.md): Start from root of docs
