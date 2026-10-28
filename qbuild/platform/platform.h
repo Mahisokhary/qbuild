@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#define QBUILD_PLATFORM_MODULE_NAME "qbuild.platform"
+
 typedef struct qbuild_platform_context *qbuild_platform_context_t;
 
 /*
