@@ -21,6 +21,20 @@ static qbuild_result_t init(qbuild_context_t c, void *data) {
 	return QBUILD_RESULT_OK;
 }
 
+static qbuild_result_t destroy_loaded(qbuild_context_t c, struct qbuild_platform_context *pc) {
+	qstruct_hashmap_iterator_t it;
+	qstruct_runc(c, qstruct_hashmap_iterator_create, pc->loaded, &it);
+	while (qstruct_hashmap_iterator_next(it)) {
+		qbuild_platform_t p;
+		qstruct_runc(c, qstruct_hashmap_iterator_current_value_getp, it, (void **) &p);
+		free(p->name);
+		if (p->parents_length != 0) free(p->parents);
+	}
+	qstruct_runc(c, qstruct_hashmap_iterator_destroy, it);
+	qstruct_runc(c, qstruct_hashmap_destroy, pc->loaded);
+	return QBUILD_RESULT_OK;
+}
+
 bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name) {
 	return qstruct_hashmap_has(pc->loaded, name, strlen(name) + 1);
 }
