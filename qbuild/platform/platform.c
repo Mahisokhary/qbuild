@@ -41,6 +41,13 @@ inline static qbuild_result_t destroy(qbuild_context_t c, void *data) {
 	return QBUILD_RESULT_OK;
 }
 
+static const struct qbuild_module module = {
+	QBUILD_PLATFORM_MODULE_NAME,
+	&init, &destroy,
+	sizeof(struct qbuild_platform_context),
+	0, NULL
+};
+
 bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name) {
 	return qstruct_hashmap_has(pc->loaded, name, strlen(name) + 1);
 }
