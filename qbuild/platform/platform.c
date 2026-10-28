@@ -35,6 +35,12 @@ static qbuild_result_t destroy_loaded(qbuild_context_t c, struct qbuild_platform
 	return QBUILD_RESULT_OK;
 }
 
+inline static qbuild_result_t destroy(qbuild_context_t c, void *data) {
+	struct qbuild_platform_context *pc = data;
+	qbuild_runc(c, destroy_loaded, c, pc);
+	return QBUILD_RESULT_OK;
+}
+
 bool qbuild_platform_has(qbuild_platform_context_t pc, const char *name) {
 	return qstruct_hashmap_has(pc->loaded, name, strlen(name) + 1);
 }
