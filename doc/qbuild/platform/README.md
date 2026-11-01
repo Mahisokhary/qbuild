@@ -39,6 +39,9 @@ Architecture supported by qbuild
 ## Host Platform Detection
 [Read more](detector/README.md)
 
+## Platform providers
+[Read more](provider/README.md)
+
 ## Implementation
 Not implemented
 
