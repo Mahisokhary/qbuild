@@ -4,6 +4,11 @@ It can be an OS like `windows`, a kernel like `linux` or a standard like `posix`
 A platform contains its own specific libraries and syscalls which can be used by platform specific codes. \
 Platform `generic` is a special platform, code written for it is used for all target platform
 
+## Platform properties
+| name    | description                         | required |
+|---------|-------------------------------------|----------|
+| name    | name of the platform                | true     |
+| extends | platforms that the platform extends | true     |
 
 ## Host and Target
 Host platform is platform which qbuild is running on. \
