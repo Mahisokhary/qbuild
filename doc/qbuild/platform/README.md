@@ -43,6 +43,7 @@ Architecture supported by qbuild
 [Read more](provider/README.md)
 
 ## Implementation
-Not implemented
+- [x] Platform
+- [ ] Architecture
 
 [back](../README.md)
