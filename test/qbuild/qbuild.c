@@ -6,6 +6,7 @@ extern bool test_qbuild_string();
 extern bool test_qbuild_context();
 extern bool test_qbuild_platform();
 extern bool test_qbuild_module();
+extern bool test_qbuild_command();
 
 bool test_qbuild() {
 	bool success = true;
@@ -15,6 +16,7 @@ bool test_qbuild() {
 	success &= test_qbuild_context();
 	success &= test_qbuild_platform();
 	success &= test_qbuild_module();
+	success &= test_qbuild_command();
 	return success;
 }
 
