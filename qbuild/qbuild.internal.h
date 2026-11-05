@@ -44,6 +44,7 @@ extern "C" {
 #include <qbuild/qolman/qolman.internal.h>
 #include <qbuild/file/file.internal.h>
 #include <qbuild/string/string.internal.h>
+#include <qbuild/command/command.internal.h>
 #include <qbuild/module/module.internal.h>
 #include <qbuild/platform/platform.internal.h>
 #include <qbuild/project/project.internal.h>
