@@ -5,6 +5,11 @@
 extern "C" {
 #endif
 
+/*
+ * Pointer to actual command
+ */
+typedef struct qbuild_command *qbuild_command_t;
+
 #ifdef __cplusplus
 }
 #endif
