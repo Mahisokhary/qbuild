@@ -5,6 +5,12 @@
 extern "C" {
 #endif
 
+struct qbuild_command {
+	char *executable;
+	size_t arguments_length;
+	char *arguments[];
+};
+
 #ifdef __cplusplus
 }
 #endif
