@@ -50,7 +50,7 @@ bool qbuild_file_exists(char *file);
  * Finds file in given paths
  * Returned string must be freed
  */
-char *qbuild_file_find(const char *paths[], size_t paths_length, const char *file);
+char *qbuild_file_find(char *paths[], size_t paths_length, const char *file);
 
 #ifdef __cplusplus
 }

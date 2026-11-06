@@ -84,7 +84,7 @@ bool qbuild_file_exists(char *file) {
 #endif
 }
 
-char *qbuild_file_find(const char *paths[], size_t paths_length, const char *file) {
+char *qbuild_file_find(char *paths[], size_t paths_length, const char *file) {
 	char *pfile = NULL;
 	for (int i = 0; i < paths_length; i++) {
 		pfile = qbuild_file_pathcat(2, paths[i], file);

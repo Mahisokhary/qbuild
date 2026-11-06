@@ -34,7 +34,7 @@ exit:
 
 bool test_qbuild_file_find() {
 	test_run_log();
-	const char *paths[] = {
+	char *paths[] = {
 		".",
 		"./example",
 	};
