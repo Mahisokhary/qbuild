@@ -32,10 +32,38 @@ exit:
 	return success;
 }
 
+bool test_qbuild_file_find() {
+	test_run_log();
+	const char *paths[] = {
+		".",
+		"./example",
+	};
+	size_t paths_length = 2;
+
+	bool success = 1;
+
+	char *file = qbuild_file_find(paths, paths_length, "Makefile");
+	test(success, destroy, file && !strcmp(file, "./Makefile"));
+
+	char *file2 = qbuild_file_find(paths, paths_length, "project.jsonc");
+	test(success, destroy, file2 && !strcmp(file2, "./example/project.jsonc"));
+
+	char *file3 = qbuild_file_find(paths, paths_length, "Makefile.dont_exists");
+	test(success, destroy, !file3);
+destroy:
+	if (file) free(file);
+	if (file2) free(file2);
+	if (file3) free(file3);
+exit:
+	test_result_log(success);
+	return success;
+}
+
 bool test_qbuild_file() {
 	bool success = true;
 	success &= test_qbuild_file_path_seperate();
 	success &= test_qbuild_file_exists();
+	success &= test_qbuild_file_find();
 	return success;
 }
 
