@@ -1,7 +1,7 @@
 #include <qbuild/qbuild.internal.h>
 
 qbuild_result_t qbuild_context_create(qbuild_context_t *ctx) {
-	qbuild_context_t c = malloc(sizeof (struct qbuild_context));
+	qbuild_context_t c; qmalloc(c, sizeof (struct qbuild_context));
 	qbuild_run(qbuild_logman_create(&c->logman));
 
 	const char *config_dirs = getenv("QBUILD_CONTEXT_CONFIG_PATH");

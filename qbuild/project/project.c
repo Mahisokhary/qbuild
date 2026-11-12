@@ -41,11 +41,9 @@ inline static qbuild_result_t _load_project_info(qbuild_project_t p) {
 }
 
 qbuild_result_t qbuild_project_load(qbuild_project_t *project, char *dir) {
-	struct qbuild_project *p = malloc(sizeof(struct qbuild_project));
+	struct qbuild_project *p; qmalloc(p, sizeof(struct qbuild_project));
 
-	char *ndir = malloc(strlen(dir) + 1);
-	strcpy(ndir, dir);
-	p->dir = ndir;
+	qstrdup(p->dir, dir);
 
 	qbuild_run(_load_project_info(p));
 	*project = p;

@@ -8,7 +8,7 @@ qbuild_result_t qbuild_platform_detector_default(qbuild_context_t c, char **name
 	struct utsname s;
 	uname(&s);
 	qbuild_string_lower(s.sysname);
-	*name = strdup(s.sysname);
+	qstrdup(*name, s.sysname);
 	return QBUILD_RESULT_OK;
 #else
 	return QBUILD_RESULT_PLATFORM_DETECTION_FAILED;

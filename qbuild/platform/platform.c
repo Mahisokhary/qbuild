@@ -61,12 +61,13 @@ qbuild_result_t qbuild_platform_register(qbuild_platform_context_t pc, const cha
 	if (!qbuild_platform_has(pc, name)) {
 		qbuild_platform_t *copied_parents;
 		if (parents_length) {
-			copied_parents = malloc(sizeof(qbuild_platform_t) * parents_length);
+			qmalloc(copied_parents, sizeof(qbuild_platform_t) * parents_length);
 			memcpy(copied_parents, parents, sizeof(qbuild_platform_t) * parents_length);
 		} else {
 			copied_parents = NULL;
 		}
-		struct qbuild_platform p = { strdup(name), parents_length, copied_parents };
+		struct qbuild_platform p = { NULL, parents_length, copied_parents };
+		qstrdup(p.name, name);
 		qstruct_runc(c, qstruct_hashmap_add, pc->loaded, name, strlen(name) + 1, &p, sizeof(struct qbuild_platform));
 		log_debugf(c->logman, "Registered platform: %s (context=%p)", name, c);
 	}

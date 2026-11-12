@@ -59,7 +59,7 @@ inline static char *find_config_file(qbuild_context_t c, const char *name) {
 }
 
 inline static qbuild_result_t load(qbuild_context_t c, qbuild_platform_context_t pc, const char *name, size_t name_size, qbuild_platform_t sp) {
-	sp->name = strdup(name);
+	qstrdup(sp->name, name);
 	sp->parents = NULL;
 	sp->parents_length = 0;
 
