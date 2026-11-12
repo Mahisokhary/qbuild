@@ -26,7 +26,7 @@ bool test_qbuild_context_config_fetch() {
 
 	bool success = 1;
 	test_run(success, exit, qbuild_context_create(&ctx));
-	config = qbuild_context_config_fetch(ctx, "platform/linux.jsonc");
+	test_run(success, exit, qbuild_context_config_fetch(ctx, "platform/linux.jsonc", &config));
 	test(success, destroy_config, config);
 	test(success, destroy_ctx, qbuild_file_exists(config));
 destroy_config:

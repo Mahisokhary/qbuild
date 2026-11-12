@@ -31,7 +31,7 @@ char** qbuild_context_config_dirs(qbuild_context_t c, size_t *length) {
 	return c->config_dirs;
 }
 
-char* qbuild_context_config_fetch(qbuild_context_t c, const char *name) {
-	return qbuild_file_find(c->config_dirs, c->config_dirs_length, name);
+qbuild_result_t qbuild_context_config_fetch(qbuild_context_t c, const char *name, char **path) {
+	return qbuild_file_find(c->config_dirs, c->config_dirs_length, name, path);
 }
 

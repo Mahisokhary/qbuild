@@ -86,14 +86,16 @@ bool qbuild_file_exists(char *file) {
 #endif
 }
 
-char *qbuild_file_find(char *paths[], size_t paths_length, const char *file) {
+qbuild_result_t qbuild_file_find(char *paths[], size_t paths_length, const char *file, char **path) {
 	char *pfile = NULL;
 	for (int i = 0; i < paths_length; i++) {
 		pfile = qbuild_file_pathcat(2, paths[i], file);
+		if (!pfile) return QBUILD_RESULT_OUT_OF_MEMORY;
 		if (qbuild_file_exists(pfile)) break;
 		free(pfile);
 		pfile = NULL;
 	}
-	return pfile;
+	*path = pfile;
+	return pfile ? QBUILD_RESULT_OK : QBUILD_RESULT_FILE_NOT_FOUND;
 }
 
