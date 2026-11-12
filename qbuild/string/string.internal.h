@@ -10,6 +10,11 @@
 extern "C" {
 #endif
 
+#define qstrdup(var, str) do { \
+	var = strdup(str); \
+	if (!var) return QBUILD_RESULT_OUT_OF_MEMORY; \
+	} while(0);
+
 /*
  * Converts all upper-cased chars to lower-case
  */
