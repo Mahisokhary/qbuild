@@ -5,6 +5,7 @@
  */
 inline static qbuild_result_t _load_project_info(qbuild_project_t p) {
 	char *path = qbuild_file_pathcat(2, p->dir, "project.jsonc");
+	if (!path) return QBUILD_RESULT_OUT_OF_MEMORY;
 	size_t buffer_size;
 	char *buffer;
 	qbuild_run(qbuild_file_read_all(path, &buffer, &buffer_size));

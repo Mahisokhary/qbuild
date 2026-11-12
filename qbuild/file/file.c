@@ -7,8 +7,8 @@ char *qbuild_file_pathcat(int count, ...) {
 
 	char *first_p = va_arg(args, char *);
 	size_t p_size = strlen(first_p) + 1;
-	char *p = malloc(p_size);
-	strcpy(p, first_p);
+	char *p = strdup(first_p);
+	if (!p) return NULL;
 
 	for (int i = 1; i < count; i++) {
 		char *new = va_arg(args, char *);
@@ -18,6 +18,7 @@ char *qbuild_file_pathcat(int count, ...) {
 		if (np_size > p_size) {
 			p_size = np_size;
 			p = realloc(p, p_size);
+			if (!p) return NULL;
 		}
 		p[index++] = '/';
 		memcpy(&p[index], new, new_size);
@@ -63,6 +64,7 @@ char **qbuild_file_path_separate(const char *src, size_t *sizep) {
 		if (len + 1 >= size) {
 			size *= 2;
 			res = realloc(res, size * sizeof(char *));
+			if (!res) return NULL;
 		}
 		res[len++] = tok;
 	}
