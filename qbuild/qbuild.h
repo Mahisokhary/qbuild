@@ -19,6 +19,7 @@ typedef enum {
 	QBUILD_RESULT_PLATFORM_DETECTION_FAILED = 7, // Failed to detect host platform
 	QBUILD_RESULT_MODULE_NONUNIQUE_NAME = 8, // Another module with same name is registered
 	QBUILD_RESULT_MODULE_NOTFOUND = 9, // Module is unavialable in the context
+	QBUILD_RESULT_OUT_OF_MEMORY = 10, // No memory available to allocate
 } qbuild_result_t;
 
 /*
