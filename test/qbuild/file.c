@@ -1,6 +1,19 @@
 #include <test/test.h>
 #include <qbuild/qbuild.internal.h>
 
+bool test_qbuild_file_pathcat() {
+	test_run_log();
+
+	bool success = 1;
+	char *res = qbuild_file_pathcat(3, "dir", "dir2", "file.txt");
+	test(success, destroy, res && strcmp(res, "dir/dir2/file.txt") == 0);
+destroy:
+	if (res) free(res);
+exit:
+	test_result_log(success);
+	return success;
+}
+
 bool test_qbuild_file_path_seperate() {
 	test_run_log();
 	const char sample[] = "test1.txt:test2.txt:test3.txt:test4.txt:test5.txt";
@@ -61,6 +74,7 @@ exit:
 
 bool test_qbuild_file() {
 	bool success = true;
+	success &= test_qbuild_file_pathcat();
 	success &= test_qbuild_file_path_seperate();
 	success &= test_qbuild_file_exists();
 	success &= test_qbuild_file_find();
