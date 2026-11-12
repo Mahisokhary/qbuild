@@ -30,13 +30,13 @@ char *qbuild_string_format(const char *fmt, ...);
  * Duplicates given array of strings
  * WARNING: Caller must free array and all of its elements
  */
-char **qbuild_string_array_dup(size_t arr_size, char **arr);
+qbuild_result_t qbuild_string_array_dup(size_t arr_size, char **arr, char ***narr);
 
 /*
  * Copies strings in first array to second array
  * WARNING: Strings added to second array are duplicated and caller must free them
  */
-void qbuild_string_array_copy(size_t arr_size, char **arr, char **narr);
+qbuild_result_t qbuild_string_array_copy(size_t arr_size, char **arr, char **narr);
 
 #ifdef __cplusplus
 }
