@@ -21,3 +21,8 @@ const char *qbuild_command_executable(qbuild_command_t c) {
 	return c->executable;
 }
 
+char **qbuild_command_arguments(qbuild_command_t c, size_t *length) {
+	if (length) *length = c->arguments_length;
+	return c->arguments;
+}
+

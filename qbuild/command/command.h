@@ -25,6 +25,11 @@ qbuild_result_t qbuild_command_destroy(qbuild_command_t command);
  */
 const char *qbuild_command_executable(qbuild_command_t c);
 
+/*
+ * Returns arguments of the command
+ */
+char **qbuild_command_arguments(qbuild_command_t c, size_t *length);
+
 #ifdef __cplusplus
 }
 #endif
