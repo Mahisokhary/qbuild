@@ -15,6 +15,11 @@ typedef struct qbuild_command *qbuild_command_t;
  */
 qbuild_result_t qbuild_command_create(qbuild_command_t *command, const char *executable, char *args[], size_t args_size);
 
+/*
+ * Destroys the command
+ */
+qbuild_result_t qbuild_command_destroy(qbuild_command_t command);
+
 #ifdef __cplusplus
 }
 #endif

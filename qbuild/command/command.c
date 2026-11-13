@@ -9,3 +9,11 @@ qbuild_result_t qbuild_command_create(qbuild_command_t *command, const char *exe
 	return QBUILD_RESULT_OK;
 }
 
+qbuild_result_t qbuild_command_destroy(qbuild_command_t c) {
+	free(c->executable);
+	for (int i = 0; i < c->arguments_length; i++)
+		free(c->arguments[i]);
+	free(c);
+	return QBUILD_RESULT_OK;
+}
+
