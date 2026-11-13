@@ -17,3 +17,7 @@ qbuild_result_t qbuild_command_destroy(qbuild_command_t c) {
 	return QBUILD_RESULT_OK;
 }
 
+const char *qbuild_command_executable(qbuild_command_t c) {
+	return c->executable;
+}
+

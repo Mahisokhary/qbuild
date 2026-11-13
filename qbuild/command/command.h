@@ -20,6 +20,11 @@ qbuild_result_t qbuild_command_create(qbuild_command_t *command, const char *exe
  */
 qbuild_result_t qbuild_command_destroy(qbuild_command_t command);
 
+/*
+ * Returns executable of the command
+ */
+const char *qbuild_command_executable(qbuild_command_t c);
+
 #ifdef __cplusplus
 }
 #endif
