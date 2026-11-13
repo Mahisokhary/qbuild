@@ -55,13 +55,16 @@ bool test_qbuild_file_find() {
 
 	bool success = 1;
 
-	char *file = qbuild_file_find(paths, paths_length, "Makefile");
+	char *file;
+	test_run(success, destroy, qbuild_file_find(paths, paths_length, "Makefile", &file));
 	test(success, destroy, file && !strcmp(file, "./Makefile"));
 
-	char *file2 = qbuild_file_find(paths, paths_length, "project.jsonc");
+	char *file2;
+	test_run(success, destroy, qbuild_file_find(paths, paths_length, "project.jsonc", &file2));
 	test(success, destroy, file2 && !strcmp(file2, "./example/project.jsonc"));
 
-	char *file3 = qbuild_file_find(paths, paths_length, "Makefile.dont_exists");
+	char *file3;
+	test(success, destroy, qbuild_file_find(paths, paths_length, "Makefile.dont_exists", &file3) == QBUILD_RESULT_FILE_NOT_FOUND);
 	test(success, destroy, !file3);
 destroy:
 	if (file) free(file);

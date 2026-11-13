@@ -7,8 +7,8 @@ char *qbuild_file_pathcat(int count, ...) {
 
 	char *first_p = va_arg(args, char *);
 	size_t p_size = strlen(first_p) + 1;
-	char *p = malloc(p_size);
-	strcpy(p, first_p);
+	char *p = strdup(first_p);
+	if (!p) return NULL;
 
 	for (int i = 1; i < count; i++) {
 		char *new = va_arg(args, char *);
@@ -18,6 +18,7 @@ char *qbuild_file_pathcat(int count, ...) {
 		if (np_size > p_size) {
 			p_size = np_size;
 			p = realloc(p, p_size);
+			if (!p) return NULL;
 		}
 		p[index++] = '/';
 		memcpy(&p[index], new, new_size);
@@ -42,7 +43,7 @@ qbuild_result_t qbuild_file_read_all(char *file, char **buffer, size_t *size) {
 	FILE *fp = fopen(file, "r");
 	if (!fp) return QBUILD_RESULT_FILE_NOT_FOUND;
 	size_t s = _qbuild_file_size(fp);
-	char *b = malloc(s + 1);
+	char *b; qmalloc(b, s + 1);
 	s = fread(b, sizeof(char), s, fp);
 	fclose(fp);
 	b[s++] = 0;
@@ -63,6 +64,7 @@ char **qbuild_file_path_separate(const char *src, size_t *sizep) {
 		if (len + 1 >= size) {
 			size *= 2;
 			res = realloc(res, size * sizeof(char *));
+			if (!res) return NULL;
 		}
 		res[len++] = tok;
 	}
@@ -84,14 +86,16 @@ bool qbuild_file_exists(char *file) {
 #endif
 }
 
-char *qbuild_file_find(char *paths[], size_t paths_length, const char *file) {
+qbuild_result_t qbuild_file_find(char *paths[], size_t paths_length, const char *file, char **path) {
 	char *pfile = NULL;
 	for (int i = 0; i < paths_length; i++) {
 		pfile = qbuild_file_pathcat(2, paths[i], file);
+		if (!pfile) return QBUILD_RESULT_OUT_OF_MEMORY;
 		if (qbuild_file_exists(pfile)) break;
 		free(pfile);
 		pfile = NULL;
 	}
-	return pfile;
+	*path = pfile;
+	return pfile ? QBUILD_RESULT_OK : QBUILD_RESULT_FILE_NOT_FOUND;
 }
 

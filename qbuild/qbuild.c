@@ -11,6 +11,7 @@ const static char *qbuild_result_strings[] = {
 	"PLATFORM_DETECTION_FAILED",
 	"MODULE_NONUNIQUE_NAME",
 	"MODULE_NOTFOUND",
+	"OUT_OF_MEMORY",
 };
 
 const char *qbuild_result_string(qbuild_result_t res) {

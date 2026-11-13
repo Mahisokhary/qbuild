@@ -29,6 +29,11 @@ extern "C" {
 
 #define qbuild_debug() (getenv("QBUILD_DEBUG"))
 
+#define qmalloc(var, size) do { \
+	var = malloc(size); \
+	if (!var) return QBUILD_RESULT_OUT_OF_MEMORY; \
+	} while(0);
+
 #ifdef __cplusplus
 }
 #endif

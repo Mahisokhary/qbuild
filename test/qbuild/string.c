@@ -38,7 +38,7 @@ bool test_qbuild_string_array_copy() {
 	char *strings2[len];
 
 	bool success = true;
-	qbuild_string_array_copy(len, strings, strings2);
+	test_run(success, exit, qbuild_string_array_copy(len, strings, strings2));
 	for (int i = 0; i < len; i++)
 		test(success, clean, strcmp(strings[i], strings2[i]) == 0);
 clean:
@@ -56,7 +56,7 @@ bool test_qbuild_string_array_dup() {
 	char **strings2;
 
 	bool success = true;
-	test(success, exit, (strings2 = qbuild_string_array_dup(len, strings)));
+	test_run(success, exit, qbuild_string_array_dup(len, strings, &strings2));
 	for (int i = 0; i < len; i++)
 		test(success, clean, strcmp(strings[i], strings2[i]) == 0);
 clean:

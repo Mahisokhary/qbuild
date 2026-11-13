@@ -51,21 +51,23 @@ inline static qbuild_result_t derialize_extends(qbuild_context_t c, qbuild_platf
 /*
  * Finds config file file for the given platform name
  */
-inline static char *find_config_file(qbuild_context_t c, const char *name) {
+inline static qbuild_result_t find_config_file(qbuild_context_t c, const char *name, char **file) {
 	char *pfile_name = qbuild_string_format("platform/%s.jsonc", name);
-	char *pfile = qbuild_context_config_fetch(c, pfile_name);
+	if (!pfile_name) return QBUILD_RESULT_OUT_OF_MEMORY;
+	qbuild_runc(c, qbuild_context_config_fetch, c, pfile_name, file);
 	free(pfile_name);
-	return pfile;
+	return QBUILD_RESULT_OK;
 }
 
 inline static qbuild_result_t load(qbuild_context_t c, qbuild_platform_context_t pc, const char *name, size_t name_size, qbuild_platform_t sp) {
-	sp->name = strdup(name);
+	qstrdup(sp->name, name);
 	sp->parents = NULL;
 	sp->parents_length = 0;
 
 	size_t buffer_size;
 	char *buffer;
-	char *pfile = find_config_file(c, name);
+	char *pfile;
+	qbuild_runc(c, find_config_file, c, name, &pfile);
 	if (pfile == NULL) return QBUILD_RESULT_FILE_NOT_FOUND;
 	qbuild_runc(c, qbuild_file_read_all, pfile, &buffer, &buffer_size);
 	free(pfile);
