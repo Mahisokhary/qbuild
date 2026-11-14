@@ -8,6 +8,6 @@ Simply a command like `make build`
 | arguements    | arguments to pass to executable | `string[]` | `null`, `{ "clean", "build" }` | false    |
 
 ## Implementation
-Not implemented
+Fully implemented
 
 [back](../README.md)
